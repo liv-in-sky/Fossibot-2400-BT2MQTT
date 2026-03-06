@@ -10,3 +10,9 @@ fbot:
   id: fbot_id
   ble_client_id: fossibot_ble
   polling_interval: 30s
+
+
+Usage for eg IOBroker
+
+the source is from here: https://github.com/ylianst/esp-fbot
+
