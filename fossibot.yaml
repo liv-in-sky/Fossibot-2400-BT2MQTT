@@ -1,0 +1,111 @@
+esphome:
+  name: fossibot-bridge
+  friendly_name: Fossibot Bridge
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32_WIFI_ENABLE_WPA3_SAE: n
+
+logger:
+  level: WARN
+
+wifi:
+  ssid: "SSID"
+  password: "PASSWORD2"
+  fast_connect: false
+  power_save_mode: none
+  ap:
+    ssid: "fossibot-fallback"
+    password: "12345678"
+
+mqtt:
+  broker: IP
+  port: PORT
+  topic_prefix: fossibot/f2400
+  birth_message:
+    topic: fossibot/f2400/status
+    payload: online
+  will_message:
+    topic: fossibot/f2400/status
+    payload: offline
+
+external_components:
+  - source: github://ylianst/esp-fbot
+    refresh: 10s
+
+ble_client:
+  - mac_address: "7C:2C:67:AE:69:BA"
+    id: fossibot_ble
+
+sensor:
+  - platform: fbot
+    battery_level:
+      name: "Fossibot SOC"
+    input_power:
+      name: "Fossibot Input Watts"
+    output_power:
+      name: "Fossibot Output Watts"
+    remaining_time:
+      name: "Fossibot Remaining Time"
+    time_to_full:
+      name: "Fossibot Time to Full"
+    ac_input_power:
+      name: "Fossibot AC Input"
+    dc_input_power:
+      name: "Fossibot DC Input"
+    ac_out_voltage:
+      name: "Fossibot AC Voltage"
+    ac_out_frequency:
+      name: "Fossibot AC Frequency"
+    threshold_charge:
+      name: "Fossibot Charge Limit"
+    threshold_discharge:
+      name: "Fossibot Discharge Limit"
+
+binary_sensor:
+  - platform: fbot
+    connected:
+      name: "Fossibot Connected"
+    usb_active:
+      name: "Fossibot USB"
+    dc_active:
+      name: "Fossibot DC"
+    ac_active:
+      name: "Fossibot AC"
+
+switch:
+  - platform: fbot
+    usb:
+      name: "Fossibot USB Switch"
+    dc:
+      name: "Fossibot DC Switch"
+    ac:
+      name: "Fossibot AC Switch"
+    ac_silent:
+      name: "Fossibot Silent Charging"
+    key_sound:
+      name: "Fossibot Key Sound"
+
+select:
+  - platform: fbot
+    light_mode:
+      name: "Fossibot Light Mode"
+    ac_charge_limit:
+      name: "Fossibot Charge Speed"
+
+number:
+  - platform: fbot
+    threshold_charge:
+      name: "Fossibot Charge Limit %"
+    threshold_discharge:
+      name: "Fossibot Discharge Limit %"
+
+button:
+
+fbot:
+  id: fbot_id
+  ble_client_id: fossibot_ble
+  polling_interval: 3min
