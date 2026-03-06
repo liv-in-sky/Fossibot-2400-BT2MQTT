@@ -37,7 +37,7 @@ external_components:
     refresh: 10s
 
 ble_client:
-  - mac_address: "7C:2C:67:AE:69:BA"
+  - mac_address: "MAC-Address"
     id: fossibot_ble
 
 sensor:
@@ -108,4 +108,5 @@ button:
 fbot:
   id: fbot_id
   ble_client_id: fossibot_ble
+
   polling_interval: 3min
