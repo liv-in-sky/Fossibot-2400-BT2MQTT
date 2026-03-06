@@ -12,7 +12,7 @@ fbot:
   polling_interval: 30s
 
 
-Usage for eg IOBroker
+Usage for eg **IOBroker**
 
-the source is from here: https://github.com/ylianst/esp-fbot
+the yaml-source is from here: https://github.com/ylianst/esp-fbot
 
