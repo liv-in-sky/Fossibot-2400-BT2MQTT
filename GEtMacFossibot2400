@@ -1,0 +1,14 @@
+Fossibot F2400 — BLE MAC ermitteln
+Warum eine eigene BLE MAC?
+Der F2400 hat zwei verschiedene MAC-Adressen:
+1. Bluetooth Classic MAC — sichtbar in Windows Einstellungen → funktioniert NICHT für ESPHome
+2. BLE MAC — wird von ESPHome benötigt, sieht anders aus (z.B. 7C:2C:67:AE:69:BA)
+BLE MAC mit der Fossibot PWA ermitteln
+Quelle (GitHub): 
+https://github.com/dandwhelan/fossibot-bluetooth
+3. F2400 einschalten
+4. Google Chrome öffnen (kein anderer Browser — nur Chrome unterstützt Web Bluetooth)
+5. PWA aufrufen: https://dandwhelan.github.io/fossibot-bluetooth/
+6. Auf "Connect" klicken → Bluetooth-Popup erscheint → Gerät "POWER-XXXX" auswählen
+7. Nach erfolgreicher Verbindung die BLE MAC-Adresse in der PWA ablesen und notieren
+Diese BLE MAC in der ESPHome YAML unter  ble_client: mac_address:  eintragen.
